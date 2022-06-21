@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "lirich674"
-  avatar           : "./images/ORB_features.jpg"
+  avatar           : "ORB_features.jpg"
   bio              : "student"
   location         : "Location"
   employer         :
