@@ -8,8 +8,8 @@ redirect_from:
 ---
 ## 目录
 - [关键文件目录](#关键文件目录)
-- [Markdown指南](#Markdown指南)
-- [HTML标签](#HTML标签)
+- [Markdown指南](#markdown指南)
+- [HTML标签](#html标签)
 
 ## 关键文件目录
 
