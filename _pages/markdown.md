@@ -1,6 +1,6 @@
 ---
 permalink: /markdown/
-title: "Markdown"
+title: "Markdown写作教程"
 author_profile: true
 redirect_from: 
   - /md/
@@ -44,7 +44,7 @@ redirect_from:
 
 ###### Header six
 
-## Blockquotes
+## 块引用
 
 Single line blockquote:
 
@@ -72,9 +72,9 @@ Single line blockquote:
 |=============================|
 | Foot1   | Foot2   | Foot3   |
 
-## Definition Lists
+## 定义列表
 
-Definition List Title
+定义列表标题
 :   Definition list division.
 
 Startup
@@ -86,7 +86,7 @@ Startup
 Do It Live
 :   I'll let Bill O'Reilly [explain](https://www.youtube.com/watch?v=O_HyZ5aW76c "We'll Do It Live") this one.
 
-## Unordered Lists (Nested)
+## 无序列表 (嵌套)
 
   * List item one 
       * List item one 
@@ -101,7 +101,7 @@ Do It Live
   * List item three
   * List item four
 
-## Ordered List (Nested)
+## 有序列表 (嵌套)
 
   1. List item one 
       1. List item one 
@@ -116,58 +116,58 @@ Do It Live
   3. List item three
   4. List item four
 
-## Buttons
+## 按钮
 
 Make any link standout more when applying the `.btn` class.
 
-## Notices
+## 通知
 
 **Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
 {: .notice}
 
 ## HTML Tags
 
-### Address Tag
+### 地址 Tag
 
 <address>
   1 Infinite Loop<br /> Cupertino, CA 95014<br /> United States
 </address>
 
-### Anchor Tag (aka. Link)
+### Anchor Tag (aka. 链接)
 
 This is an example of a [link](http://github.com "Github").
 
-### Abbreviation Tag
+### 缩写
 
 The abbreviation CSS stands for "Cascading Style Sheets".
 
 *[CSS]: Cascading Style Sheets
 
-### Cite Tag
+### 引用
 
 "Code is poetry." ---<cite>Automattic</cite>
 
-### Code Tag
+### 代码
 
 You will learn later on in these tests that `word-wrap: break-word;` will be your best friend.
 
-### Strike Tag
+### 删除
 
 This tag will let you <strike>strikeout text</strike>.
 
-### Emphasize Tag
+### 强调
 
 The emphasize tag should _italicize_ text.
 
-### Insert Tag
+### 插入
 
 This tag should denote <ins>inserted</ins> text.
 
-### Keyboard Tag
+### 键盘标签
 
 This scarcely known tag emulates <kbd>keyboard text</kbd>, which is usually styled like the `<code>` tag.
 
-### Preformatted Tag
+### 预格式化标签
 
 This tag styles large blocks of code.
 
@@ -181,22 +181,22 @@ This tag styles large blocks of code.
 }
 </pre>
 
-### Quote Tag
+### 引号
 
 <q>Developers, developers, developers&#8230;</q> &#8211;Steve Ballmer
 
-### Strong Tag
+### 加粗
 
 This tag shows **bold text**.
 
-### Subscript Tag
+### 下标
 
 Getting our science styling on with H<sub>2</sub>O, which should push the "2" down.
 
-### Superscript Tag
+### 上标
 
 Still sticking with science and Isaac Newton's E = MC<sup>2</sup>, which should lift the 2 up.
 
-### Variable Tag
+### 变量
 
 This allows you to denote <var>variables</var>.
