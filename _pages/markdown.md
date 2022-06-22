@@ -6,8 +6,12 @@ redirect_from:
   - /md/
   - /markdown.html
 ---
+## 目录
+- [关键文件目录](#关键文件目录)
+- [Markdown指南](#Markdown指南)
+- [HTML标签](#HTML标签)
 
-## Locations of key files/directories
+## 关键文件目录
 
 * Basic config options: _config.yml
 * Top navigation bar config: _data/navigation.yml
@@ -22,7 +26,7 @@ redirect_from:
 * Static files (like PDFs): /files/
 * Profile image (can set in _config.yml): images/profile.png
 
-## Tips and hints
+## 提示
 
 * Name a file ".md" to have it render in markdown, name it ".html" to render in HTML.
 * Go to the [commit list](https://github.com/academicpages/academicpages.github.io/commits/master) (on your repo) to find the last version Github built with Jekyll. 
@@ -34,7 +38,13 @@ redirect_from:
 ## Resources
  * [Liquid syntax guide](https://shopify.github.io/liquid/tags/control-flow/)
 
-## Markdown guide
+
+<div align="right">
+    <b><a href="#目录">↥ Back To Top</a></b>
+</div>
+
+
+## Markdown指南
 
 ### Header three
 
@@ -125,7 +135,13 @@ Make any link standout more when applying the `.btn` class.
 **Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
 {: .notice}
 
-## HTML Tags
+
+<div align="right">
+    <b><a href="#目录">↥ Back To Top</a></b>
+</div>
+
+
+## HTML标签
 
 ### 地址 Tag
 
@@ -200,3 +216,9 @@ Still sticking with science and Isaac Newton's E = MC<sup>2</sup>, which should 
 ### 变量
 
 This allows you to denote <var>variables</var>.
+
+
+<div align="right">
+    <b><a href="#目录">↥ Back To Top</a></b>
+</div>
+
