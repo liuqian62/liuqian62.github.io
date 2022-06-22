@@ -8,6 +8,8 @@ redirect_from:
   - /about.html
 ---
 
+
+* [github地址](https://github.com/liuqian62/liuqian62.github.io)
 # Summary
 
 Date : 2022-06-22 11:35:50
@@ -19,6 +21,7 @@ Total : 241 files,  23400 codes, 2427 comments, 3880 blanks, all 29707 lines
 <!-- Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md) -->
 
 ## Languages
+
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
 | SCSS | 112 | 10,886 | 1,518 | 2,043 | 14,447 |
@@ -32,6 +35,7 @@ Total : 241 files,  23400 codes, 2427 comments, 3880 blanks, all 29707 lines
 | Python | 4 | 189 | 106 | 135 | 430 |
 
 ## Directories
+
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
 | . | 241 | 23,400 | 2,427 | 3,880 | 29,707 |
