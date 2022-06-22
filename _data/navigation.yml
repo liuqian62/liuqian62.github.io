@@ -9,8 +9,8 @@ main:
   # - title: "Teaching"
   #   url: /teaching/    
     
-  # - title: "文件夹"
-  #   url: /portfolio/
+  - title: "笔记"
+    url: /notebook/
         
   - title: "博客"
     url: /year-archive/
