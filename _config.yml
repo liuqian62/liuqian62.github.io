@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "lirich674"
   avatar           : "ORB_features.jpg"
-  bio              : "something about me"
-  location         : "chengdu"
+  bio              : "student"
+  location         : "Location"
   employer         :
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "http://yourfullgooglescholarurl.com"
-  email            :"lirich674@gmail.com"
+  email            :
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,7 +96,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "liuqian62"
+  github           : "academicpages"
   google_plus      :
   keybase          :
   instagram        :
@@ -109,7 +109,7 @@ author:
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : #"replacethistwitterhandle"
+  twitter          : "replacethistwitterhandle"
   vine             :
   weibo            :
   xing             :
