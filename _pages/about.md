@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "GitHub Pages  for  personal websites"
+title: "欢迎来的lirich674的个人网站"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -10,17 +10,20 @@ redirect_from:
 
 
 * [github地址](https://github.com/liuqian62/liuqian62.github.io)
-# Summary
+
+
+# 项目总结
 
 Date : 2022-06-22 11:35:50
 
-Directory c:\\Users\\lirich674\\Desktop\\lirich674.github.io
 
-Total : 241 files,  23400 codes, 2427 comments, 3880 blanks, all 29707 lines
+Total : 241 files,  23400 codes, 2427 comments, 3880 blanks, all 29707 lines 
 
+
+总共：241 个文件,  23400 行代码, 2427 行注释, 3880 个空行, 总共 29707 行  
 <!-- Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md) -->
 
-## Languages
+## 按语言分类
 
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
@@ -34,7 +37,7 @@ Total : 241 files,  23400 codes, 2427 comments, 3880 blanks, all 29707 lines
 | CSS | 6 | 423 | 13 | 17 | 453 |
 | Python | 4 | 189 | 106 | 135 | 430 |
 
-## Directories
+## 按目录分类
 
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
