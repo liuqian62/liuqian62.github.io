@@ -97,7 +97,7 @@ author_profile: false
     </header>
     <div class="resource-grid">
       {% for entry in group.entries %}
-        {% assign matches = all_resources | where_exp: "item", "item.collection == entry.collection and item.slug == entry.slug" %}
+        {% assign matches = all_resources | where: "collection", entry.collection | where: "slug", entry.slug %}
         {% assign resource = matches | first %}
         {% if resource %}
           {% include resource-card.html resource=resource %}
