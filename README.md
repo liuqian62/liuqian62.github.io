@@ -1,320 +1,306 @@
-# 三维重建学习资源合集 | 3D Reconstruction Learning Resources
+# 3D Reconstruction Learning Resources | 三维重建学习资源合集
 
-**3D Reconstruction Learning** - 基于 Jekyll 和 GitHub Pages 构建的三维重建学习资源导航网站
+> A curated knowledge hub for 3D Reconstruction, SLAM, Multi-Sensor Calibration, Time Synchronization, and 3D Gaussian Splatting.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
----
-
-## 📌 项目概述
-
-| 属性 | 说明 |
-|------|------|
-| **网站类型** | 三维重建学习资源导航网站 |
-| **技术框架** | Jekyll 4.x + GitHub Pages |
-| **主题来源** | [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) |
-| **部署平台** | GitHub Pages (免费托管) |
-| **许可证** | MIT |
-| **站点地址** | https://liuqian62.github.io |
-
-### 关于作者
-- **昵称**: lirich674
-- **身份**: SLAM/三维重建 学习者
-- **位置**: 成都
-- **邮箱**: lirich674@gmail.com
-- **GitHub**: [liuqian62](https://github.com/liuqian62)
+**Live Site**: https://liuqian62.github.io  
+**Author**: lirich674 (SLAM / 3D Reconstruction learner, Chengdu)  
+**License**: MIT
 
 ---
 
-## 🏗️ 技术架构
+## Project Overview | 项目概述
 
-### 核心技术栈
+| Attribute | Value |
+|-----------|-------|
+| **Type** | Static knowledge navigation site |
+| **Domain** | 3D Reconstruction, SLAM, Multi-Sensor Systems |
+| **Framework** | Jekyll 4.x + Minimal Mistakes theme |
+| **Hosting** | GitHub Pages |
+| **Language** | Chinese (primary) + English |
+
+**Core Mission**: Organize 3D reconstruction learning resources into a clear, topic-driven knowledge graph. The site connects calibration, time synchronization, reconstruction methods, and 3D Gaussian Splatting (3DGS) into coherent learning paths.
+
+---
+
+## Architecture | 技术架构
+
+### Tech Stack
 ```
-静态站点生成器: Jekyll
-前端模板:       Minimal Mistakes (SCSS)
-标记语言:       Markdown (Kramdown)
-样式语言:       SCSS
-部署平台:       GitHub Pages
-依赖管理:       Ruby Gems (Bundler)
+Static Site Generator : Jekyll 4.x
+Theme                  : Minimal Mistakes (SCSS)
+Markup                : Markdown (Kramdown)
+Deployment            : GitHub Pages
+Package Manager       : Ruby Gems (Bundler)
 ```
 
-### 项目结构
+### Directory Structure
 ```
-.
-├── _config.yml          # 全局配置 (站点信息、作者、插件等)
-├── _data/               # 数据文件 (导航、作者、UI文本)
-├── _includes/           # 可复用组件 (页眉、页脚、侧边栏等)
-├── _layouts/            # 页面布局模板
-├── _pages/              # 页面 (论文、教程、项目、视屏、书籍)
-├── _papers/             # 论文资源
-├── _tutorials/          # 教程文章
-├── _projects/           # 开源项目
-├── _videos/             # 视频课程
-├── _books/              # 书籍推荐
-├── _sass/               # 样式文件 (主题核心)
-├── assets/              # 静态资源 (CSS、JS、图片、字体)
-└── Gemfile              # Ruby依赖配置
+├── _config.yml           # Site configuration
+├── _data/                # YAML data files
+│   ├── topics.yml        # Four main topics & subtopics
+│   ├── learning_paths.yml # Three-tier learning paths
+│   ├── featured_resources.yml # Curated entry points
+│   └── navigation.yml    # Navigation menu
+├── _pages/               # Page content
+│   ├── calibration.md    # Topic: Multi-sensor calibration
+│   ├── sync.md           # Topic: Time synchronization
+│   ├── reconstruction.md # Topic: 3D reconstruction
+│   └── 3dgs.md           # Topic: 3D Gaussian Splatting
+├── _papers/              # Paper collection (18 papers)
+├── _tutorials/           # Tutorial collection
+├── _projects/            # Open-source project entries (20 projects)
+├── _videos/              # Video course collection
+├── _books/               # Book recommendations
+├── _includes/            # Reusable components
+├── _layouts/             # Page templates
+└── _sass/                # Theme styles
 ```
 
 ---
 
-## 📂 内容模块
+## Domain Model | 领域模型
 
-### 导航菜单
-| 页面 | 路由 | 说明 |
-|------|------|------|
-| 首页 | `/` | 网站介绍和资源索引 |
-| 论文 | `/papers/` | 经典论文和最新研究推荐 |
-| 教程 | `/tutorials/` | 学习笔记和教程整理 |
-| 开源项目 | `/projects/` | 优秀开源代码库推荐 |
-| 视频课程 | `/videos/` | 视频教程和讲座链接 |
-| 书籍 | `/books/` | 技术书籍整理 |
+### Four Main Topics | 四条主线
 
-### 内容集合 (Collections)
-| 集合 | 目录 | 说明 |
-|------|------|------|
-| Papers | `_papers/` | 论文资源 |
-| Tutorials | `_tutorials/` | 教程文章 |
-| Projects | `_projects/` | 开源项目 |
-| Videos | `_videos/` | 视频课程 |
-| Books | `_books/` | 书籍推荐 |
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    3D RECONSTRUCTION ECOSYSTEM                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────────┐  ┌──────────────────┐                     │
+│  │   CALIBRATION     │  │      SYNC        │                     │
+│  │   标定            │  │   时间同步        │                     │
+│  ├──────────────────┤  ├──────────────────┤                     │
+│  │ Single/Camera     │  │ Offset/Drift/     │                     │
+│  │ Stereo/Multi      │  │ Latency          │                     │
+│  │ LiDAR-Camera      │  │ Trigger/PPS/PTP   │                     │
+│  │ Camera-IMU        │  │ ROS2 Filters     │                     │
+│  │ LiDAR-IMU         │  │ Continuous-Time  │                     │
+│  │ Radar-Camera      │  │ Diagnostics      │                     │
+│  │ Spatiotemporal    │  │                  │                     │
+│  └──────────────────┘  └──────────────────┘                     │
+│                                                                  │
+│  ┌──────────────────┐  ┌──────────────────┐                     │
+│  │ RECONSTRUCTION    │  │     3DGS         │                     │
+│  │ 重建              │  │ 3D高斯泼溅        │                     │
+│  ├──────────────────┤  ├──────────────────┤                     │
+│  │ SfM/MVS          │  │ Foundations       │                     │
+│  │ TSDF/SDF         │  │ Geometry/2DGS    │                     │
+│  │ SLAM Mapping     │  │ Dynamic/4D        │                     │
+│  │ NeRF/Neural Fields│  │ Online/Incremental│                     │
+│  │ Datasets/Benchmarks│ │ Large-Scale      │                     │
+│  │                  │  │ Compression       │                     │
+│  │                  │  │ Editable/Semantic │                     │
+│  │                  │  │ GS-SLAM          │                     │
+│  └──────────────────┘  └──────────────────┘                     │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Calibration Topic | 标定
+- **标定基础**: Camera, Stereo/Multi-camera, LiDAR, IMU, Radar
+- **跨传感器**: LiDAR-Camera, Camera-IMU, LiDAR-IMU, Radar-Camera, Radar-LiDAR, Radar-IMU
+- **时空标定**: Spatiotemporal calibration (joint optimization of time offset + extrinsic)
+- **工具**: Kalibr, LI-Init, TIER IV CalibrationTools
+
+### Sync Topic | 时间同步
+- **同步基础**: Offset, Drift, Latency concepts
+- **硬件同步**: Trigger/Shared Clock, PTP/IEEE 1588, PPS
+- **软件同步**: Driver timestamping, ROS/ROS2 message filters, Continuous-time modeling
+- **诊断**: Overlay, lag scan, residual analysis
+
+### Reconstruction Topic | 重建
+- **传统方法**: SfM (Structure from Motion), MVS (Multi-View Stereo)
+- **工具链**: COLMAP, OpenMVG, OpenMVS, Open3D
+- **体素表示**: TSDF, SDF, KinectFusion, Voxel hashing
+- **SLAM建图**: Visual SLAM, RGB-D SLAM, Neural SLAM
+- **神经场**: NeRF, Neural Fields, Efficient NeRF
+- **基准**: Datasets and benchmarks
+
+### 3DGS Topic | 3D高斯泼溅 (Most Active)
+- **基础**: Original 3DGS, Splatfacto, 2DGS, Mesh extraction
+- **动态场景**: 4D Gaussians, Deformable 3DGS, Human/vehicle animation
+- **大规模**: Online/Incremental, City-scale, Autonomous driving
+- **压缩部署**: LightGaussian, Model compression, glTF standardization
+- **应用**: GS-SLAM, Robotic mapping, Semantic segmentation, Editing
 
 ---
 
-## 🚀 快速开始
+## Content Collections | 内容集合
 
-### 环境要求
-- Ruby >= 2.4
-- Bundler
-- Jekyll
-- Git
+### Papers | 论文 (`_papers/`)
+| Paper | Year | Focus |
+|-------|------|-------|
+| Zhang Camera Calibration | 1999 | Classic single-camera calibration |
+| 3D Gaussian Splatting | 2023 | Foundational 3DGS paper |
+| 2D Gaussian Splatting | 2024 | Geometry-accurate 3DGS |
+| 4D Gaussians | 2024 | Dynamic scene representation |
+| Deformable 3D Gaussians | 2023 | Non-rigid scenes |
+| GigaSAM | 2024 | Large-scale 3DGS |
+| GS-SLAM | 2024 | 3DGS + SLAM integration |
+| Photo-SLAM | 2024 | SLAM with Gaussians |
+| NeRF | 2020 | Neural Radiance Fields |
+| Continuous-Time Calibration Review | 2024 | Time synchronization |
+| + 8 more | - | - |
 
-### 本地运行
+### Projects | 开源项目 (`_projects/`)
+| Project | Language | Category |
+|---------|----------|----------|
+| COLMAP | C++/Python | SfM/MVS |
+| Open3D | C++/Python | Geometry processing |
+| ORB-SLAM3 | C++ | Visual SLAM |
+| NiceSLAM | Python | Neural SLAM |
+| NeRFStudio | Python | NeRF framework |
+| Gaussian Splatting | Python | Original 3DGS |
+| GSplat | CUDA/Python | Fast 3DGS |
+| Kalibr | Python/C++ | Multi-sensor calibration |
+| OpenMVG | C++ | SfM |
+| OpenMVS | C++ | Multi-view stereo |
+| LinuxPTP | C | PTP synchronization |
+| K-Radar | Python | Radar datasets |
+| nuScenes | Python | Autonomous driving data |
+| + 8 more | - | - |
 
+### Tutorials | 教程 (`_tutorials/`)
+- OpenCV Camera Calibration Guide
+- ROS2 Message Filters
+- 3DGS Tutorial
+- (Template-based, expandable)
+
+### Books | 书籍 (`_books/`)
+- Multiple View Geometry (Hartley & Zisserman)
+- State Estimation for Robotics
+
+---
+
+## Learning Paths | 学习路径
+
+### 入门路径 (Beginner)
+```
+1. Camera model, intrinsic/extrinsic parameters, coordinate systems
+2. OpenCV single-camera and stereo calibration
+3. COLMAP: image → sparse/dense reconstruction pipeline
+4. Understand TSDF, NeRF, 3DGS representation differences
+```
+
+### 进阶路径 (Intermediate)
+```
+1. Camera-IMU, LiDAR-Camera, LiDAR-IMU calibration
+2. PTP/PPS/trigger/ROS2 message_filters trade-offs
+3. Compare SfM/MVS, RGB-D, NeRF, 3DGS trade-offs
+4. Overlay, lag scan, residual diagnostic methods
+```
+
+### 前沿路径 (Advanced)
+```
+1. GraphDECO 3DGS, Splatfacto, official tutorials
+2. Track papers by: Dynamic, Geometry, Compression, Editing, SLAM
+3. Priority: surveys, official implementations, reproducible benchmarks
+4. glTF Gaussian Splatting standardization & Web/Engine ecosystem
+```
+
+---
+
+## Quick Start | 快速开始
+
+### Local Development
 ```bash
-# 1. 克隆仓库
+# Clone
 git clone https://github.com/liuqian62/liuqian62.github.io.git
 cd liuqian62.github.io
 
-# 2. 安装依赖
+# Install dependencies
 bundle install
 
-# 3. 本地预览 (开发模式)
+# Run local server
 bundle exec jekyll serve --livereload
 
-# 4. 访问 http://localhost:4000
+# Access http://localhost:4000
 ```
 
-### 部署流程
-1. 将代码推送到 GitHub 仓库
-2. 在仓库 Settings → Pages 中启用 GitHub Pages
-3. 选择 `main` 分支作为源代码
-4. 站点将自动构建并发布
+### Deployment
+1. Push to GitHub repository
+2. Enable GitHub Pages in Settings → Pages
+3. Select `main` branch as source
+4. Auto-build and deploy
 
 ---
 
-## 🛠️ 常用配置
+## Adding Content | 添加内容
 
-### 1. 修改站点信息 (`_config.yml`)
-```yaml
-title: "3D Reconstruction Learning"
-description: "三维重建学习资源合集 · 论文 · 教程 · 开源项目 · 视频课程 · 书籍推荐"
-url: "https://liuqian62.github.io"
-```
-
-### 2. 修改导航菜单 (`_data/navigation.yml`)
-```yaml
-main:
-  - title: "首页"
-    url: /
-  - title: "论文"
-    url: /papers/
-  - title: "教程"
-    url: /tutorials/
-  - title: "开源项目"
-    url: /projects/
-  - title: "视频课程"
-    url: /videos/
-  - title: "书籍"
-    url: /books/
-```
-
-### 3. 添加新论文
-在 `_papers/` 目录创建 Markdown 文件：
-
+### Adding a Paper
+Create `_papers/your-paper.md`:
 ```markdown
 ---
-title: "论文标题"
+title: "Paper Title"
 collection: papers
-permalink: /papers/论文链接/
-authors: "作者列表"
+permalink: /papers/your-paper/
+authors: "Authors"
 year: 2024
-venue: "会议/期刊名称"
+venue: "Conference/Journal"
 arxiv: "https://arxiv.org/abs/xxxx"
 code: "https://github.com/xxx"
 project: "https://project-page.com"
 tags:
-  - 3D重建
-  - 深度学习
+  - 3DGS
+  - Geometry
 ---
 
-## 论文简介
-
-简要介绍这篇论文的主要内容、方法和贡献。
-
-## 学习笔记
-
-记录学习这篇论文时的笔记和心得。
+## Abstract / Summary
+## Key Contributions
+## Learning Notes
 ```
 
-### 4. 添加新教程
-在 `_tutorials/` 目录创建 Markdown 文件：
-
+### Adding a Project
+Create `_projects/your-project.md`:
 ```markdown
 ---
-title: "教程标题"
-layout: single
-collection: tutorials
-permalink: /tutorials/教程链接/
-date: 2024-01-01
-difficulty: 初级
-tags:
-  - 教程
-  - 三维重建
----
-
-## 前言
-
-介绍本教程的学习目标。
-
-## 环境准备
-
-## 核心内容
-
-## 总结
-```
-
-### 5. 添加新开源项目
-在 `_projects/` 目录创建 Markdown 文件：
-
-```markdown
----
-title: "项目名称"
-layout: single
+title: "Project Name"
 collection: projects
-permalink: /projects/项目链接/
+permalink: /projects/your-project/
 stars: "⭐ 10k+"
 language: "Python"
 github: "https://github.com/username/repo"
-docs: "https://docs.example.com"
 tags:
-  - 开源
-  - 三维重建
+  - Reconstruction
+  - Open Source
 ---
 
-## 项目简介
-
-## 主要特性
-
-## 快速开始
-```
-
-### 6. 添加新视频课程
-在 `_videos/` 目录创建 Markdown 文件：
-
-```markdown
----
-title: "视频标题"
-layout: single
-collection: videos
-permalink: /videos/视频链接/
-platform: "YouTube"
-duration: "2小时30分钟"
-instructor: "讲师名称"
-url: "https://video-url.com"
-tags:
-  - 视频课程
-  - 三维重建
----
-
-## 课程简介
-
-## 课程大纲
-```
-
-### 7. 添加新书籍
-在 `_books/` 目录创建 Markdown 文件：
-
-```markdown
----
-title: "书名"
-layout: single
-collection: books
-permalink: /books/书籍链接/
-author: "作者"
-publisher: "出版社"
-rating: "9.5/10"
-link: "https://book-link.com"
-tags:
-  - 书籍
-  - 三维重建
----
-
-## 书籍简介
-
-## 适合人群
-
-## 主要内容
+## Overview
+## Key Features
+## Quick Start
 ```
 
 ---
 
-## 🎯 学习路径建议
+## Navigation Structure | 导航结构
 
-### 🌟 入门阶段
-1. 阅读《SLAM十四讲》打好基础
-2. 学习 ORB-SLAM 系列论文
-3. 观看相关视频课程
-4. 实践基础教程
-
-### 🚀 进阶阶段
-1. 深入学习 Multi-View Geometry
-2. 学习深度学习在3D重建中的应用
-3. 阅读最新顶会论文
-4. 复现优秀开源项目
-
-### 🎓 高级阶段
-1. 关注最新研究进展
-2. 参与开源项目贡献
-3. 尝试改进现有方法
-4. 发表自己的研究成果
+| Page | Route | Content |
+|------|-------|---------|
+| Home | `/` | Topic-driven entry with featured resources |
+| Calibration | `/calibration/` | Multi-sensor calibration hub |
+| Sync | `/sync/` | Time synchronization hub |
+| Reconstruction | `/reconstruction/` | 3D reconstruction methods |
+| 3DGS | `/3dgs/` | 3D Gaussian Splatting frontier |
+| Papers | `/papers/` | All papers archive |
+| Tutorials | `/tutorials/` | All tutorials archive |
+| Projects | `/projects/` | All projects archive |
+| Videos | `/videos/` | Video courses |
+| Books | `/books/` | Book recommendations |
 
 ---
 
-## 📊 内容统计
+## Design Philosophy | 设计理念
 
-| 类型 | 数量 | 说明 |
-|------|------|------|
-| 论文 | 📚 | 持续更新中 |
-| 教程 | 📖 | 学习笔记整理 |
-| 项目 | 🤖 | 开源代码推荐 |
-| 视频 | 🎬 | 优质课程推荐 |
-| 书籍 | 📚 | 经典书籍推荐 |
-
-> 💡 **提示**: 每种资源类型都配有模板文件，方便快速添加新内容。
+1. **Topic-First Organization**: Resources are grouped by problem domain (calibration, sync, reconstruction, 3DGS) rather than just type
+2. **Learning Path Guidance**: Three-tier paths (beginner → intermediate → advanced) help users navigate
+3. **Curated Entry Points**: Each topic has recommended starter resources
+4. **Engineering Focus**: Emphasis on reproducible tools and practical workflows
 
 ---
 
-## 📝 许可证
+## Acknowledgments | 致谢
 
-本项目基于 [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) 主题，使用 **MIT License**。
-
-详细内容请查看 [LICENSE](LICENSE) 文件。
-
----
-
-## 🙏 致谢
-
-- **主题**: [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) by Michael Rose
-- **模板**: [Academic Pages](https://github.com/academicpages/academicpages.github.io) by Stuart Geiger
-- **托管**: [GitHub Pages](https://pages.github.com/)
+- **Theme**: [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) by Michael Rose
+- **Template**: [Academic Pages](https://github.com/academicpages/academicpages.github.io) by Stuart Geiger
+- **Hosting**: [GitHub Pages](https://pages.github.com/)
