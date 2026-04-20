@@ -1,0 +1,14 @@
+updated_at: 2026-04-20
+items:
+  - title: "跟进 3DGS 标准化：glTF Gaussian Splatting"
+    category: "3DGS"
+    summary: "把标准化和资产交付纳入学习资源体系，帮助研究结果走向 Web 与引擎生态。"
+    url: "https://www.khronos.org/news/press/gltf-gaussian-splatting-press-release"
+  - title: "补充 GS-SLAM 与压缩方向 survey"
+    category: "Survey"
+    summary: "为 3DGS-SLAM 和 compact / compressed 3DGS 增加更系统的综述入口。"
+    url: "https://arxiv.org/abs/2402.13255"
+  - title: "扩展同步与标定工程资料"
+    category: "Engineering"
+    summary: "加入 PTP、PPS、ROS2 message_filters 与联合时空标定的工程入口。"
+    url: "https://www.linuxptp.org/"

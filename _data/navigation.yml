@@ -1,19 +1,21 @@
-# Navigation Links
 main:
   - title: "首页"
     url: /
-
-  - title: "论文"
+  - title: "标定"
+    url: /calibration/
+  - title: "同步"
+    url: /sync/
+  - title: "重建"
+    url: /reconstruction/
+  - title: "3DGS"
+    url: /3dgs/
+  - title: "Papers"
     url: /papers/
-
-  - title: "教程"
+  - title: "Tutorials"
     url: /tutorials/
-
-  - title: "开源项目"
+  - title: "Projects"
     url: /projects/
-
-  - title: "视频课程"
+  - title: "Videos"
     url: /videos/
-
-  - title: "书籍"
+  - title: "Books"
     url: /books/

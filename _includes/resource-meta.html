@@ -1,0 +1,24 @@
+{% if page.topic or page.resource_type or page.sensors or page.inputs or page.outputs %}
+<section class="resource-meta-box">
+  <h2 class="resource-meta-box__title">资源速览</h2>
+  <div class="resource-meta-grid">
+    {% if page.topic %}<div><strong>Topic</strong><span>{{ page.topic }}</span></div>{% endif %}
+    {% if page.subtopic %}<div><strong>Subtopic</strong><span>{{ page.subtopic }}</span></div>{% endif %}
+    {% if page.resource_type %}<div><strong>Type</strong><span>{{ page.resource_type }}</span></div>{% endif %}
+    {% if page.level %}<div><strong>Level</strong><span>{{ page.level }}</span></div>{% endif %}
+    {% if page.sensors %}<div><strong>Sensors</strong><span>{{ page.sensors | join: ", " }}</span></div>{% endif %}
+    {% if page.inputs %}<div><strong>Inputs</strong><span>{{ page.inputs | join: ", " }}</span></div>{% endif %}
+    {% if page.outputs %}<div><strong>Outputs</strong><span>{{ page.outputs | join: ", " }}</span></div>{% endif %}
+    {% if page.status %}<div><strong>Status</strong><span>{{ page.status }}</span></div>{% endif %}
+    {% if page.verified_at %}<div><strong>Verified</strong><span>{{ page.verified_at }}</span></div>{% endif %}
+  </div>
+  {% if page.summary_zh %}
+    <p class="resource-meta-box__summary">{{ page.summary_zh }}</p>
+  {% endif %}
+  <div class="resource-meta-box__links">
+    {% if page.official_url %}<a href="{{ page.official_url }}" class="btn btn--small">Official</a>{% endif %}
+    {% if page.code_url %}<a href="{{ page.code_url }}" class="btn btn--small btn--inverse">Code</a>{% endif %}
+    {% if page.docs_url %}<a href="{{ page.docs_url }}" class="btn btn--small btn--inverse">Docs</a>{% endif %}
+  </div>
+</section>
+{% endif %}

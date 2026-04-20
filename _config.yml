@@ -10,7 +10,7 @@ locale                   : "zh-CN"
 title                    : "3D Reconstruction Learning"
 title_separator          : "-"
 name                     : &name "3D Reconstruction Resources"
-description              : &description "三维重建学习资源合集 · 论文 · 教程 · 开源项目 · 视频课程 · 书籍推荐"
+description              : &description "三维重建学习资源合集，聚焦多传感器标定、时间同步、重建方法与 3D Gaussian Splatting。"
 url                      : https://liuqian62.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "liuqian62/liuqian62.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "lirich674"
   avatar           : "ORB_features.jpg"
-  bio              : "slam学习者"
+  bio              : "SLAM / 3D Reconstruction learner and curator"
   location         : "Chengdu"
   employer         :
   pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
@@ -211,7 +211,7 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false
   # _papers
   - scope:
       path: ""

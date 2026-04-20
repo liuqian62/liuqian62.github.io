@@ -1,0 +1,32 @@
+{% include base_path %}
+{% assign resource = include.resource %}
+<article class="resource-card">
+  <div class="resource-card__eyebrow">
+    {% if resource.resource_type %}<span>{{ resource.resource_type | upcase }}</span>{% endif %}
+    {% if resource.level %}<span>{{ resource.level }}</span>{% endif %}
+    {% if resource.status %}<span>{{ resource.status }}</span>{% endif %}
+  </div>
+  <h3 class="resource-card__title">
+    <a href="{{ base_path }}{{ resource.url }}">{{ resource.title }}</a>
+  </h3>
+  {% if resource.summary_zh %}
+    <p class="resource-card__summary">{{ resource.summary_zh }}</p>
+  {% elsif resource.excerpt %}
+    <p class="resource-card__summary">{{ resource.excerpt | markdownify | strip_html }}</p>
+  {% endif %}
+  <dl class="resource-card__meta">
+    {% if resource.subtopic %}<div><dt>Subtopic</dt><dd>{{ resource.subtopic }}</dd></div>{% endif %}
+    {% if resource.sensors %}<div><dt>Sensors</dt><dd>{{ resource.sensors | join: ", " }}</dd></div>{% endif %}
+    {% if resource.year %}<div><dt>Year</dt><dd>{{ resource.year }}</dd></div>{% endif %}
+    {% if resource.verified_at %}<div><dt>Verified</dt><dd>{{ resource.verified_at }}</dd></div>{% endif %}
+  </dl>
+  {% if resource.why_read %}
+    <p class="resource-card__why">{{ resource.why_read }}</p>
+  {% endif %}
+  <div class="resource-card__links">
+    <a href="{{ base_path }}{{ resource.url }}" class="btn btn--small">详情</a>
+    {% if resource.official_url %}<a href="{{ resource.official_url }}" class="btn btn--small btn--inverse">Official</a>{% endif %}
+    {% if resource.code_url %}<a href="{{ resource.code_url }}" class="btn btn--small btn--inverse">Code</a>{% endif %}
+    {% if resource.docs_url %}<a href="{{ resource.docs_url }}" class="btn btn--small btn--inverse">Docs</a>{% endif %}
+  </div>
+</article>

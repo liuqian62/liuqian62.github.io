@@ -2,26 +2,42 @@
 title: "项目名称"
 layout: single
 collection: projects
-permalink: /projects/项目链接/
-stars: "⭐ 10k+"
-language: "Python"
-github: "https://github.com/username/repo"
-docs: "https://docs.example.com"
+permalink: /projects/project-slug/
+stars: "10k+"
+language: "Python / C++"
+official_url: "https://project-page.example.com"
+code_url: "https://github.com/username/repo"
+docs_url: "https://docs.example.com"
+topic: reconstruction
+subtopic: reconstruction-tools
+resource_type: project
+level: intermediate
+sensors:
+  - camera
+inputs:
+  - images
+outputs:
+  - point-cloud
+status: active
+verified_at: 2026-04-20
+summary_zh: "一句话说明项目的定位和核心价值。"
+why_read: "一句话说明为什么值得优先尝试。"
+prerequisites:
+  - linux
+related: []
 tags:
-  - 开源
-  - 三维重建
-  - SLAM
+  - open-source
 ---
 
 ## 项目简介
 
-简要介绍这个项目的功能和特点。
+说明这个项目解决什么问题，适合放在什么工作流中使用。
 
-## 主要特性
+## 主要特点
 
-- 特性1
-- 特性2
-- 特性3
+- 特点一
+- 特点二
+- 特点三
 
 ## 快速开始
 

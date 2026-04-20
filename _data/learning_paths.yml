@@ -1,0 +1,22 @@
+paths:
+  - title: "入门路径"
+    audience: "刚开始接触三维重建、SLAM 或多传感器系统的读者。"
+    steps:
+      - "先看相机模型、内外参、坐标系与重投影误差。"
+      - "学会使用 OpenCV 完成单目和双目标定。"
+      - "用 COLMAP 走通一条图片到稀疏/稠密重建的完整流程。"
+      - "理解 TSDF、NeRF 和 3DGS 的表示差异。"
+  - title: "进阶路径"
+    audience: "已经能跑基础工具，希望搭建真实采集与重建管线的工程用户。"
+    steps:
+      - "补齐 Camera-IMU、LiDAR-Camera、LiDAR-IMU 标定。"
+      - "理解 PTP / PPS / trigger / ROS2 message_filters 的适用边界。"
+      - "比较 SfM/MVS、RGB-D、NeRF 与 3DGS 在输入条件和输出质量上的取舍。"
+      - "练习 overlay、lag scan 和 residual 等诊断方法。"
+  - title: "前沿路径"
+    audience: "关注 2025-2026 研究进展，希望跟踪最新 3DGS 与 GS-SLAM 的读者。"
+    steps:
+      - "从 GraphDECO 3DGS、Splatfacto 和 3DGS tutorial 建立基础。"
+      - "按动态、几何准确、压缩、编辑和 SLAM 五条线追踪代表论文。"
+      - "优先阅读 survey、官方实现和可复现 benchmark。"
+      - "关注 glTF Gaussian Splatting 标准化与 Web/引擎生态。"

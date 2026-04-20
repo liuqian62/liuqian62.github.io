@@ -1,0 +1,33 @@
+groups:
+  - title: "标定精选"
+    entries:
+      - collection: "tutorials"
+        slug: "opencv-camera-calibration-guide"
+      - collection: "projects"
+        slug: "kalibr-multi-sensor-calibration"
+      - collection: "papers"
+        slug: "zhang-camera-calibration"
+  - title: "同步精选"
+    entries:
+      - collection: "projects"
+        slug: "linuxptp"
+      - collection: "tutorials"
+        slug: "ros2-message-filters"
+      - collection: "papers"
+        slug: "continuous-time-calibration-review"
+  - title: "重建精选"
+    entries:
+      - collection: "projects"
+        slug: "colmap"
+      - collection: "projects"
+        slug: "open3d"
+      - collection: "papers"
+        slug: "nerf"
+  - title: "3DGS 精选"
+    entries:
+      - collection: "projects"
+        slug: "gaussian-splatting"
+      - collection: "tutorials"
+        slug: "3dgs-tutorial"
+      - collection: "papers"
+        slug: "3d-gaussian-splatting-paper"

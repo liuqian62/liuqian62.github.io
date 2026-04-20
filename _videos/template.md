@@ -2,21 +2,39 @@
 title: "视频标题"
 layout: single
 collection: videos
-permalink: /videos/视频链接/
+permalink: /videos/video-slug/
 platform: "YouTube"
-duration: "2小时30分钟"
+duration: "2h 30m"
 instructor: "讲师名称"
-url: "https://video-url.com"
+official_url: "https://video-url.com"
+code_url:
+docs_url:
+topic: 3dgs
+subtopic: 3dgs-foundations
+resource_type: video
+level: beginner
+sensors:
+  - camera
+inputs:
+  - images
+outputs:
+  - gaussians
+status: active
+verified_at: 2026-04-20
+summary_zh: "一句话说明视频内容和观看价值。"
+why_read: "一句话说明为什么值得看。"
+prerequisites:
+  - basic rendering
+related: []
 tags:
-  - 视频课程
-  - 三维重建
+  - video
 ---
 
-## 课程简介
+## 视频简介
 
-简要介绍这个视频课程的内容。
+介绍视频的核心主题和适合人群。
 
-## 课程大纲
+## 内容大纲
 
 ### 第一部分
 ### 第二部分

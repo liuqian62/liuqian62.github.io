@@ -1,0 +1,52 @@
+{% assign resources = site.papers | concat: site.tutorials | concat: site.projects | concat: site.videos | concat: site.books %}
+{% assign topic_data = site.data.topics[page.topic_key] %}
+
+{% if topic_data %}
+  <section class="topic-intro">
+    <p class="topic-intro__lead">{{ topic_data.intro }}</p>
+  </section>
+
+  <section class="topic-nav">
+    <h2>本页索引</h2>
+    <div class="topic-nav__grid">
+      {% for section in topic_data.sections %}
+        {% for subtopic in section.subtopics %}
+          {% assign nav_matches = resources | where_exp: "item", "item.topic == page.topic_key and item.subtopic == subtopic.key" %}
+          <a class="topic-nav__item" href="#{{ subtopic.key }}">
+            <span class="topic-nav__title">{{ subtopic.title }}</span>
+            <span class="topic-nav__count">{{ nav_matches.size }} 条</span>
+          </a>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  {% for section in topic_data.sections %}
+    <section class="topic-section">
+      <header class="topic-section__header">
+        <h2>{{ section.title }}</h2>
+        {% if section.description %}<p>{{ section.description }}</p>{% endif %}
+      </header>
+      {% for subtopic in section.subtopics %}
+        {% assign matches = resources | where_exp: "item", "item.topic == page.topic_key and item.subtopic == subtopic.key" %}
+        <div class="topic-subsection" id="{{ subtopic.key }}">
+          <div class="topic-subsection__header">
+            <h3>{{ subtopic.title }} <span class="topic-subsection__count">{{ matches.size }} 条</span></h3>
+            {% if subtopic.description %}<p>{{ subtopic.description }}</p>{% endif %}
+          </div>
+          {% if matches.size > 0 %}
+            <div class="resource-grid">
+              {% for resource in matches %}
+                {% include resource-card.html resource=resource %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="topic-subsection__empty">该子主题的精选资源会在后续持续补充。</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endfor %}
+{% else %}
+  <p>Topic data not found.</p>
+{% endif %}
