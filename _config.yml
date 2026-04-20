@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "zh-CN"
-title                    : "首页"
+title                    : "3D Reconstruction Learning"
 title_separator          : "-"
-name                     : &name "lirich674"
-description              : &description "SLAM学习者 · 个人技术博客"
+name                     : &name "3D Reconstruction Resources"
+description              : &description "三维重建学习资源合集 · 论文 · 教程 · 开源项目 · 视频课程 · 书籍推荐"
 url                      : https://liuqian62.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "liuqian62/liuqian62.github.io"
@@ -175,18 +175,21 @@ kramdown:
 
 # Collections
 collections:
-  teaching:
+  papers:
     output: true
-    permalink: /:collection/:path/
-  publications:
+    permalink: /papers/:path/
+  tutorials:
     output: true
-    permalink: /:collection/:path/
-  portfolio:
+    permalink: /tutorials/:path/
+  projects:
     output: true
-    permalink: /:collection/:path/
-  talks:
+    permalink: /projects/:path/
+  videos:
     output: true
-    permalink: /:collection/:path/
+    permalink: /videos/:path/
+  books:
+    output: true
+    permalink: /books/:path/
 
 
 # Defaults
@@ -209,40 +212,45 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
+  # _papers
   - scope:
       path: ""
-      type: teaching
+      type: papers
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
-      comments: true
-  # _publications
+  # _tutorials
   - scope:
       path: ""
-      type: publications
+      type: tutorials
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
-      comments: true
-  # _portfolio
+  # _projects
   - scope:
       path: ""
-      type: portfolio
+      type: projects
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
-      comment: true
-  # _talks
+  # _videos
   - scope:
       path: ""
-      type: talks
+      type: videos
     values:
-      layout: talk
-      author_profile: true
+      layout: single
+      author_profile: false
+      share: true
+  # _books
+  - scope:
+      path: ""
+      type: books
+    values:
+      layout: single
+      author_profile: false
       share: true
 
 # Sass/SCSS

@@ -1,6 +1,6 @@
-# 个人学术网站 | Personal Academic Website
+# 三维重建学习资源合集 | 3D Reconstruction Learning Resources
 
-**lirich674's Personal Website** - 基于 Jekyll 和 GitHub Pages 构建的学术个人网站
+**3D Reconstruction Learning** - 基于 Jekyll 和 GitHub Pages 构建的三维重建学习资源导航网站
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -10,16 +10,16 @@
 
 | 属性 | 说明 |
 |------|------|
-| **网站类型** | 个人学术/技术博客网站 |
+| **网站类型** | 三维重建学习资源导航网站 |
 | **技术框架** | Jekyll 4.x + GitHub Pages |
 | **主题来源** | [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) |
 | **部署平台** | GitHub Pages (免费托管) |
 | **许可证** | MIT |
 | **站点地址** | https://liuqian62.github.io |
 
-### 作者信息
+### 关于作者
 - **昵称**: lirich674
-- **身份**: SLAM 学习者
+- **身份**: SLAM/三维重建 学习者
 - **位置**: 成都
 - **邮箱**: lirich674@gmail.com
 - **GitHub**: [liuqian62](https://github.com/liuqian62)
@@ -45,29 +45,16 @@
 ├── _data/               # 数据文件 (导航、作者、UI文本)
 ├── _includes/           # 可复用组件 (页眉、页脚、侧边栏等)
 ├── _layouts/            # 页面布局模板
-├── _pages/              # 页面 (关于、笔记、博客、简历等)
-├── _posts/              # 博客文章 (Markdown格式)
-├── _publications/      # 学术论文
-├── _talks/              # 演讲/报告
-├── _teaching/           # 教学经历
-├── _portfolio/          # 项目作品集
+├── _pages/              # 页面 (论文、教程、项目、视屏、书籍)
+├── _papers/             # 论文资源
+├── _tutorials/          # 教程文章
+├── _projects/           # 开源项目
+├── _videos/             # 视频课程
+├── _books/              # 书籍推荐
 ├── _sass/               # 样式文件 (主题核心)
 ├── assets/              # 静态资源 (CSS、JS、图片、字体)
-├── files/               # 可下载文件 (PDF等)
-├── talkmap/              # 演讲地点地图可视化
-├── markdown_generator/   # 批量生成Markdown的工具
 └── Gemfile              # Ruby依赖配置
 ```
-
-### 插件列表
-| 插件名称 | 用途 |
-|----------|------|
-| jekyll-paginate | 分页功能 |
-| jekyll-sitemap | 生成站点地图 |
-| jekyll-gist | 嵌入GitHub Gist |
-| jekyll-feed | RSS/Atom订阅 |
-| jekyll-redirect-from | 重定向支持 |
-| jekyll-archives | 归档功能 (可选) |
 
 ---
 
@@ -76,20 +63,21 @@
 ### 导航菜单
 | 页面 | 路由 | 说明 |
 |------|------|------|
-| 首页/关于 | `/` | 个人介绍和项目统计 |
-| 笔记 | `/notebook/` | 技术笔记整理 |
-| 博客 | `/year-archive/` | 按年份归档的博客文章 |
-| 简历 | `/cv/` | 个人简历 |
-| 指南 | `/markdown/` | 使用指南 |
+| 首页 | `/` | 网站介绍和资源索引 |
+| 论文 | `/papers/` | 经典论文和最新研究推荐 |
+| 教程 | `/tutorials/` | 学习笔记和教程整理 |
+| 开源项目 | `/projects/` | 优秀开源代码库推荐 |
+| 视频课程 | `/videos/` | 视频教程和讲座链接 |
+| 书籍 | `/books/` | 技术书籍整理 |
 
 ### 内容集合 (Collections)
 | 集合 | 目录 | 说明 |
 |------|------|------|
-| Posts | `_posts/` | 博客文章 |
-| Publications | `_publications/` | 学术论文 |
-| Talks | `_talks/` | 演讲报告 |
-| Teaching | `_teaching/` | 教学经历 |
-| Portfolio | `_portfolio/` | 项目作品 |
+| Papers | `_papers/` | 论文资源 |
+| Tutorials | `_tutorials/` | 教程文章 |
+| Projects | `_projects/` | 开源项目 |
+| Videos | `_videos/` | 视频课程 |
+| Books | `_books/` | 书籍推荐 |
 
 ---
 
@@ -127,98 +115,193 @@ bundle exec jekyll serve --livereload
 
 ## 🛠️ 常用配置
 
-### 1. 修改个人信息 (`_config.yml`)
+### 1. 修改站点信息 (`_config.yml`)
 ```yaml
-name: "lirich674"
-title: "首页"
-description: "personal description"
+title: "3D Reconstruction Learning"
+description: "三维重建学习资源合集 · 论文 · 教程 · 开源项目 · 视频课程 · 书籍推荐"
 url: "https://liuqian62.github.io"
-
-author:
-  name: "lirich674"
-  bio: "slam学习者"
-  location: "Chengdu"
-  email: "lirich674@gmail.com"
-  github: "liuqian62"
 ```
 
 ### 2. 修改导航菜单 (`_data/navigation.yml`)
 ```yaml
 main:
-  - title: "笔记"
-    url: /notebook/
-  - title: "博客"
-    url: /year-archive/
-  - title: "简历"
-    url: /cv/
-  - title: "指南"
-    url: /markdown/
+  - title: "首页"
+    url: /
+  - title: "论文"
+    url: /papers/
+  - title: "教程"
+    url: /tutorials/
+  - title: "开源项目"
+    url: /projects/
+  - title: "视频课程"
+    url: /videos/
+  - title: "书籍"
+    url: /books/
 ```
 
-### 3. 创建新文章
-在 `_posts/` 目录创建 Markdown 文件，命名格式:
-```
-YYYY-MM-DD-title-of-post.md
-```
+### 3. 添加新论文
+在 `_papers/` 目录创建 Markdown 文件：
 
-### 4. 添加论文
-在 `_publications/` 目录创建文件:
 ```markdown
 ---
 title: "论文标题"
-collection: publications
+collection: papers
+permalink: /papers/论文链接/
+authors: "作者列表"
+year: 2024
+venue: "会议/期刊名称"
+arxiv: "https://arxiv.org/abs/xxxx"
+code: "https://github.com/xxx"
+project: "https://project-page.com"
+tags:
+  - 3D重建
+  - 深度学习
 ---
-论文内容...
+
+## 论文简介
+
+简要介绍这篇论文的主要内容、方法和贡献。
+
+## 学习笔记
+
+记录学习这篇论文时的笔记和心得。
+```
+
+### 4. 添加新教程
+在 `_tutorials/` 目录创建 Markdown 文件：
+
+```markdown
+---
+title: "教程标题"
+layout: single
+collection: tutorials
+permalink: /tutorials/教程链接/
+date: 2024-01-01
+difficulty: 初级
+tags:
+  - 教程
+  - 三维重建
+---
+
+## 前言
+
+介绍本教程的学习目标。
+
+## 环境准备
+
+## 核心内容
+
+## 总结
+```
+
+### 5. 添加新开源项目
+在 `_projects/` 目录创建 Markdown 文件：
+
+```markdown
+---
+title: "项目名称"
+layout: single
+collection: projects
+permalink: /projects/项目链接/
+stars: "⭐ 10k+"
+language: "Python"
+github: "https://github.com/username/repo"
+docs: "https://docs.example.com"
+tags:
+  - 开源
+  - 三维重建
+---
+
+## 项目简介
+
+## 主要特性
+
+## 快速开始
+```
+
+### 6. 添加新视频课程
+在 `_videos/` 目录创建 Markdown 文件：
+
+```markdown
+---
+title: "视频标题"
+layout: single
+collection: videos
+permalink: /videos/视频链接/
+platform: "YouTube"
+duration: "2小时30分钟"
+instructor: "讲师名称"
+url: "https://video-url.com"
+tags:
+  - 视频课程
+  - 三维重建
+---
+
+## 课程简介
+
+## 课程大纲
+```
+
+### 7. 添加新书籍
+在 `_books/` 目录创建 Markdown 文件：
+
+```markdown
+---
+title: "书名"
+layout: single
+collection: books
+permalink: /books/书籍链接/
+author: "作者"
+publisher: "出版社"
+rating: "9.5/10"
+link: "https://book-link.com"
+tags:
+  - 书籍
+  - 三维重建
+---
+
+## 书籍简介
+
+## 适合人群
+
+## 主要内容
 ```
 
 ---
 
-## 🔧 辅助工具
+## 🎯 学习路径建议
 
-### 1. TalkMap - 演讲地图可视化
-**功能**: 将演讲地点以交互式地图形式展示
+### 🌟 入门阶段
+1. 阅读《SLAM十四讲》打好基础
+2. 学习 ORB-SLAM 系列论文
+3. 观看相关视频课程
+4. 实践基础教程
 
-**使用方式**:
-```bash
-cd talkmap
-python talkmap.py
-```
+### 🚀 进阶阶段
+1. 深入学习 Multi-View Geometry
+2. 学习深度学习在3D重建中的应用
+3. 阅读最新顶会论文
+4. 复现优秀开源项目
 
-**依赖**: `getorg`, `geopy`
-
-### 2. Markdown Generator - 批量生成工具
-**功能**: 从 TSV 文件批量生成 Markdown 文件
-
-**文件位置**: `markdown_generator/`
-
-**支持类型**:
-- `talks.tsv` → `_talks/*.md`
-- `publications.tsv` → `_publications/*.md`
-
-**使用方式**:
-```bash
-# 使用Jupyter Notebook
-jupyter notebook markdown_generator/talks.ipynb
-
-# 或使用Python脚本
-python markdown_generator/talks.py
-```
+### 🎓 高级阶段
+1. 关注最新研究进展
+2. 参与开源项目贡献
+3. 尝试改进现有方法
+4. 发表自己的研究成果
 
 ---
 
-## 📊 内容概览
+## 📊 内容统计
 
-### 内容集合
-| 集合 | 目录 | 说明 | 状态 |
-|------|------|------|------|
-| Publications | `_publications/` | 学术论文 | 📝 模板已就绪 |
-| Talks | `_talks/` | 演讲报告 | 📝 模板已就绪 |
-| Teaching | `_teaching/` | 教学经历 | 📝 模板已就绪 |
-| Portfolio | `_portfolio/` | 项目作品 | 📝 模板已就绪 |
-| Posts | `_posts/` | 博客文章 | 🗑️ 已清空 |
-| Notebook | `notebook/` | 技术笔记 | 🔗 外部链接 |
+| 类型 | 数量 | 说明 |
+|------|------|------|
+| 论文 | 📚 | 持续更新中 |
+| 教程 | 📖 | 学习笔记整理 |
+| 项目 | 🤖 | 开源代码推荐 |
+| 视频 | 🎬 | 优质课程推荐 |
+| 书籍 | 📚 | 经典书籍推荐 |
 
-> 💡 **提示**: 所有内容集合都配有参考模板，方便快速添加新内容。
+> 💡 **提示**: 每种资源类型都配有模板文件，方便快速添加新内容。
 
 ---
 
