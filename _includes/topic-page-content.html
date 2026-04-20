@@ -11,7 +11,7 @@
     <div class="topic-nav__grid">
       {% for section in topic_data.sections %}
         {% for subtopic in section.subtopics %}
-          {% assign nav_matches = resources | where_exp: "item", "item.topic == page.topic_key and item.subtopic == subtopic.key" %}
+          {% assign nav_matches = resources | where: "topic", page.topic_key | where: "subtopic", subtopic.key %}
           <a class="topic-nav__item" href="#{{ subtopic.key }}">
             <span class="topic-nav__title">{{ subtopic.title }}</span>
             <span class="topic-nav__count">{{ nav_matches.size }} 条</span>
@@ -28,7 +28,7 @@
         {% if section.description %}<p>{{ section.description }}</p>{% endif %}
       </header>
       {% for subtopic in section.subtopics %}
-        {% assign matches = resources | where_exp: "item", "item.topic == page.topic_key and item.subtopic == subtopic.key" %}
+        {% assign matches = resources | where: "topic", page.topic_key | where: "subtopic", subtopic.key %}
         <div class="topic-subsection" id="{{ subtopic.key }}">
           <div class="topic-subsection__header">
             <h3>{{ subtopic.title }} <span class="topic-subsection__count">{{ matches.size }} 条</span></h3>
