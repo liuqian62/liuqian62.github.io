@@ -1,111 +1,83 @@
-
+#!/usr/bin/env python
 # coding: utf-8
+"""
+Talks markdown generator for academicpages
 
-# # Talks markdown generator for academicpages
-# 
-# Takes a TSV of talks with metadata and converts them for use with [academicpages.github.io](academicpages.github.io). This is an interactive Jupyter notebook ([see more info here](http://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html)). The core python code is also in `talks.py`. Run either from the `markdown_generator` folder after replacing `talks.tsv` with one containing your data.
-# 
-# TODO: Make this work with BibTex and other databases, rather than Stuart's non-standard TSV format and citation style.
+Takes a TSV of talks with metadata and converts them for use with academicpages.github.io
 
-# In[1]:
+Data format:
+The TSV needs to have the following columns: title, type, url_slug, venue, date, location, talk_url, description, with a header at the top.
+- Fields that cannot be blank: title, url_slug, date. All else can be blank. type defaults to "Talk"
+- date must be formatted as YYYY-MM-DD.
+- url_slug will be the descriptive part of the .md file and the permalink URL.
+"""
 
 import pandas as pd
-import os
+from pathlib import Path
+from utils import html_escape, ensure_dir, write_markdown
 
 
-# ## Data format
-# 
-# The TSV needs to have the following columns: title, type, url_slug, venue, date, location, talk_url, description, with a header at the top. Many of these fields can be blank, but the columns must be in the TSV.
-# 
-# - Fields that cannot be blank: `title`, `url_slug`, `date`. All else can be blank. `type` defaults to "Talk" 
-# - `date` must be formatted as YYYY-MM-DD.
-# - `url_slug` will be the descriptive part of the .md file and the permalink URL for the page about the paper. 
-#     - The .md file will be `YYYY-MM-DD-[url_slug].md` and the permalink will be `https://[yourdomain]/talks/YYYY-MM-DD-[url_slug]`
-#     - The combination of `url_slug` and `date` must be unique, as it will be the basis for your filenames
-# 
-
-
-# ## Import TSV
-# 
-# Pandas makes this easy with the read_csv function. We are using a TSV, so we specify the separator as a tab, or `\t`.
-# 
-# I found it important to put this data in a tab-separated values format, because there are a lot of commas in this kind of data and comma-separated values can get messed up. However, you can modify the import statement, as pandas also has read_excel(), read_json(), and others.
-
-# In[3]:
-
-talks = pd.read_csv("talks.tsv", sep="\t", header=0)
-talks
-
-
-# ## Escape special characters
-# 
-# YAML is very picky about how it takes a valid string, so we are replacing single and double quotes (and ampersands) with their HTML encoded equivilents. This makes them look not so readable in raw format, but they are parsed and rendered nicely.
-
-# In[4]:
-
-html_escape_table = {
-    "&": "&amp;",
-    '"': "&quot;",
-    "'": "&apos;"
+def generate_talk_markdown(row) -> str:
+    """生成单个 talk 的 Markdown 内容"""
+    talk_date = str(row.date)
+    url_slug = row.url_slug
+    
+    # YAML Front Matter
+    yaml_data = {
+        'title': row.title,
+        'collection': 'talks',
+        'type': row.type if pd.notna(row.type) and len(str(row.type)) > 3 else 'Talk',
+        'permalink': f'/talks/{talk_date}-{url_slug}',
     }
-
-def html_escape(text):
-    if type(text) is str:
-        return "".join(html_escape_table.get(c,c) for c in text)
-    else:
-        return "False"
-
-
-# ## Creating the markdown files
-# 
-# This is where the heavy lifting is done. This loops through all the rows in the TSV dataframe, then starts to concatentate a big string (```md```) that contains the markdown for each type. It does the YAML metadata first, then does the description for the individual page.
-
-# In[5]:
-
-loc_dict = {}
-
-for row, item in talks.iterrows():
     
-    md_filename = str(item.date) + "-" + item.url_slug + ".md"
-    html_filename = str(item.date) + "-" + item.url_slug 
-    year = item.date[:4]
+    # 可选字段
+    venue = str(row.venue) if pd.notna(row.venue) else ""
+    if len(venue) > 3:
+        yaml_data['venue'] = venue
     
-    md = "---\ntitle: \""   + item.title + '"\n'
-    md += "collection: talks" + "\n"
+    location = str(row.location) if pd.notna(row.location) else ""
+    if len(location) > 3:
+        yaml_data['date'] = talk_date
+        yaml_data['location'] = location
     
-    if len(str(item.type)) > 3:
-        md += 'type: "' + item.type + '"\n'
-    else:
-        md += 'type: "Talk"\n'
+    # 构建 YAML
+    md_lines = ["---"]
+    for key, value in yaml_data.items():
+        if isinstance(value, str):
+            md_lines.append(f'{key}: "{html_escape(value)}"')
+        else:
+            md_lines.append(f'{key}: {value}')
+    md_lines.append("---")
     
-    md += "permalink: /talks/" + html_filename + "\n"
+    md = "\n".join(md_lines) + "\n"
     
-    if len(str(item.venue)) > 3:
-        md += 'venue: "' + item.venue + '"\n'
-        
-    if len(str(item.location)) > 3:
-        md += "date: " + str(item.date) + "\n"
+    # Markdown 内容
+    talk_url = str(row.talk_url) if pd.notna(row.talk_url) else ""
+    if len(talk_url) > 3:
+        md += f"\n[More information here]({talk_url})\n"
     
-    if len(str(item.location)) > 3:
-        md += 'location: "' + str(item.location) + '"\n'
-           
-    md += "---\n"
+    description = str(row.description) if pd.notna(row.description) else ""
+    if len(description) > 3:
+        md += f"\n{html_escape(description)}\n"
     
-    
-    if len(str(item.talk_url)) > 3:
-        md += "\n[More information here](" + item.talk_url + ")\n" 
-        
-    
-    if len(str(item.description)) > 3:
-        md += "\n" + html_escape(item.description) + "\n"
-        
-        
-    md_filename = os.path.basename(md_filename)
-    #print(md)
-    
-    with open("../_talks/" + md_filename, 'w') as f:
-        f.write(md)
+    return md
 
 
-# These files are in the talks directory, one directory below where we're working from.
+def main():
+    # 读取 TSV
+    talks = pd.read_csv("talks.tsv", sep="\t", header=0)
+    
+    # 确保输出目录存在
+    output_dir = ensure_dir(Path("../_talks"))
+    
+    # 生成 Markdown 文件
+    for _, item in talks.iterrows():
+        md_filename = f"{item.date}-{item.url_slug}.md"
+        md_content = generate_talk_markdown(item)
+        write_markdown(output_dir, md_filename, md_content)
+    
+    print(f"Successfully generated {len(talks)} talk files")
 
+
+if __name__ == "__main__":
+    main()
