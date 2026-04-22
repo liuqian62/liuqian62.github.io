@@ -1,7 +1,10 @@
-# Jupyter notebook markdown generator
+# Markdown Generator
 
-These .ipynb files are Jupyter notebook files that convert a TSV containing structured data about talks (`talks.tsv`) or presentations (`presentations.tsv`) into individual markdown files that will be properly formatted for the academicpages template. The notebooks contain a lot of documentation about the process. The .py files are pure python that do the same things if they are executed in a terminal, they just don't have pretty documentation.
+These scripts convert structured source data into markdown files used by this site.
 
+- `publications.py`: reads `publications.tsv` and writes paper entries into `_papers/`
+- `pubsFromBib.py`: reads BibTeX files and writes paper entries into `_papers/`
+- `talks.py`: reads `talks.tsv` and writes talk entries into `_talks/`
+- `utils.py`: shared helpers for YAML front matter, escaping, and file output
 
-
-
+The `.ipynb` notebooks are older exploratory versions of the same workflows. The `.py` scripts are the maintained command-line entry points.

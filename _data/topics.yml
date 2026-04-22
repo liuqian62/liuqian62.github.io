@@ -1,6 +1,6 @@
 calibration:
   title: "多传感器标定 Calibration"
-  intro: "围绕相机、LiDAR、IMU、Radar 以及跨传感器系统的空间标定与联合时空标定，聚焦可复现工具、经典方法与工程排障。"
+  intro: "围绕相机、LiDAR、IMU、Radar 以及跨传感器系统的空间标定与时空联合标定，聚焦可复现工具、经典方法与工程排障。"
   sections:
     - title: "标定基础"
       description: "先建立共同语言，再进入不同传感器的具体方案。"
@@ -72,7 +72,7 @@ sync:
       subtopics:
         - key: "software-timestamping"
           title: "驱动时间戳与后处理对齐"
-          description: "软件时间戳、bag 对齐和 offset 估计。"
+          description: "软件时间戳、lag 对齐和 offset 估计。"
         - key: "ros-message-sync"
           title: "ROS / ROS2 Message Filters"
           description: "Exact / Approximate 同步、QoS 和队列设置。"
@@ -88,7 +88,7 @@ reconstruction:
   intro: "从传统几何重建到神经场，再到面向机器人建图的在线系统，按输入条件、输出形态和应用目标组织学习路径。"
   sections:
     - title: "传统多视图重建"
-      description: "经典但仍然非常重要，是后续 NeRF 和 3DGS 数据准备的基石。"
+      description: "经典但仍然非常重要，是后续 NeRF 和 3DGS 数据准备的基础。"
       subtopics:
         - key: "sfm-mvs"
           title: "SfM / MVS"
@@ -114,7 +114,7 @@ reconstruction:
         - key: "nerf"
           title: "NeRF / Neural Fields"
           description: "基础 NeRF、高效 NeRF、无界与动态场景。"
-    - title: "专题与基准"
+    - title: "专题与基础设施"
       description: "建立对数据集、benchmark 和 survey 的系统认识。"
       subtopics:
         - key: "datasets-benchmarks"
@@ -147,7 +147,7 @@ reconstruction:
           title: "大场景 / 分层 / 户外 / 车载"
           description: "面向长序列、城市级与车载场景。"
     - title: "部署与应用"
-      description: "把研究原型走向压缩、编辑、SLAM 和标准化。"
+      description: "把研究原型推进到压缩、编辑、SLAM 和标准化。"
       subtopics:
         - key: "compressed-3dgs"
           title: "压缩 / 轻量化 / 传输"

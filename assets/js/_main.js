@@ -3,23 +3,26 @@
    ========================================================================== */
 
 $(document).ready(function(){
-   // Sticky footer
+  // Sticky footer
   var bumpIt = function() {
       $("body").css("margin-bottom", $(".page__footer").outerHeight(true));
     },
-    didResize = false;
+    resizeTimer = null;
+
+  var scheduleLayoutRefresh = function() {
+    if (resizeTimer) {
+      window.clearTimeout(resizeTimer);
+    }
+
+    resizeTimer = window.setTimeout(function() {
+      bumpIt();
+      stickySideBar();
+      resizeTimer = null;
+    }, 100);
+  };
 
   bumpIt();
 
-  $(window).resize(function() {
-    didResize = true;
-  });
-  setInterval(function() {
-    if (didResize) {
-      didResize = false;
-      bumpIt();
-    }
-  }, 250);
   // FitVids init
   $("#main").fitVids();
 
@@ -47,7 +50,7 @@ $(document).ready(function(){
   stickySideBar();
 
   $(window).resize(function(){
-    stickySideBar();
+    scheduleLayoutRefresh();
   });
 
   // Follow menu drop down
@@ -58,10 +61,10 @@ $(document).ready(function(){
   });
 
   // init smooth scroll
-  $("a").smoothScroll({offset: -20});
+  $("a[href^='#']").smoothScroll({offset: -20});
 
   // add lightbox class to all image links
-  $("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.JPG'],a[href$='.png'],a[href$='.gif']").addClass("image-popup");
+  $(".page__content a[href$='.jpg'], .page__content a[href$='.jpeg'], .page__content a[href$='.JPG'], .page__content a[href$='.png'], .page__content a[href$='.gif']").addClass("image-popup");
 
   // Magnific-Popup options
   $(".image-popup").magnificPopup({

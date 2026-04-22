@@ -1,199 +1,166 @@
 #!/usr/bin/env python
 # coding: utf-8
 """
-Publications markdown generator from BibTeX for academicpages
-
-Takes a set of bibtex files and converts them for use with academicpages.github.io
+Generate paper markdown files from BibTeX sources.
 """
 
-from pybtex.database.input import bibtex
-from time import strptime
-import re
 import html
+import re
 from pathlib import Path
-from utils import html_escape, ensure_dir, write_markdown
+from time import strptime
 
+from pybtex.database.input import bibtex
 
-# Publication type configurations
+from utils import build_yaml_front_matter, ensure_dir, html_escape, optional_text, write_markdown
+
+OUTPUT_DIR = Path("../_papers")
+
 PUBLICATION_TYPES = {
     "proceeding": {
         "file": "proceedings.bib",
-        "venuekey": "booktitle",
-        "venue-pretext": "In the proceedings of ",
-        "collection": {"name": "publications", "permalink": "/publication/"}
+        "venue_key": "booktitle",
+        "venue_prefix": "In the proceedings of ",
     },
     "journal": {
         "file": "pubs.bib",
-        "venuekey": "journal",
-        "venue-pretext": "",
-        "collection": {"name": "publications", "permalink": "/publication/"}
-    }
+        "venue_key": "journal",
+        "venue_prefix": "",
+    },
 }
 
 
 def parse_date(fields: dict) -> str:
-    """解析日期字段，返回 YYYY-MM-DD 格式"""
+    """Convert BibTeX date fields into YYYY-MM-DD format."""
     pub_year = fields.get("year", "1900")
     pub_month = "01"
     pub_day = "01"
-    
+
     if "month" in fields:
         month_val = str(fields["month"])
         if len(month_val) < 3:
             pub_month = f"0{month_val}"[-2:]
         elif not month_val.isdigit():
             try:
-                tmnth = strptime(month_val[:3], '%b').tm_mon
-                pub_month = f"{tmnth:02d}"
+                pub_month = f"{strptime(month_val[:3], '%b').tm_mon:02d}"
             except ValueError:
                 pub_month = "01"
         else:
             pub_month = month_val.zfill(2)
-    
+
     if "day" in fields:
         pub_day = str(fields["day"]).zfill(2)
-    
+
     return f"{pub_year}-{pub_month}-{pub_day}"
 
 
 def clean_bibtex_text(text: str) -> str:
-    """清理 BibTeX 文本中的特殊字符"""
+    """Remove a few BibTeX formatting characters from plain text fields."""
     return text.replace("{", "").replace("}", "").replace("\\", "")
 
 
 def generate_url_slug(title: str) -> str:
-    """从标题生成 URL slug"""
+    """Build a filesystem-safe slug from a BibTeX title."""
     clean_title = clean_bibtex_text(title).replace(" ", "-")
-    url_slug = re.sub(r"\[.*?\]|[^a-zA-Z0-9_-]", "", clean_title)
-    return url_slug.replace("--", "-")
+    slug = re.sub(r"\[.*?\]|[^a-zA-Z0-9_-]", "", clean_title)
+    return slug.replace("--", "-").strip("-").lower()
 
 
 def build_citation(bib_id: str, bibdata, pubsource: str, pub_year: str) -> str:
-    """构建引用文本"""
+    """Construct a readable citation string."""
     entry = bibdata.entries[bib_id]
     fields = entry.fields
-    
-    # 作者
     authors = []
+
     if "author" in entry.persons:
         for author in entry.persons["author"]:
             first_name = author.first_names[0] if author.first_names else ""
             last_name = author.last_names[0] if author.last_names else ""
-            authors.append(f"{first_name} {last_name}")
-    
+            full_name = f"{first_name} {last_name}".strip()
+            if full_name:
+                authors.append(full_name)
+
     citation = ", ".join(authors)
     if citation:
         citation += ", "
-    
-    # 标题
+
     title = clean_bibtex_text(fields["title"])
-    citation += f'"{html_escape(title)}."'
-    
-    # 期刊/会议
-    venue_key = PUBLICATION_TYPES[pubsource]["venuekey"]
-    venue_pretext = PUBLICATION_TYPES[pubsource]["venue-pretext"]
-    venue = venue_pretext + clean_bibtex_text(fields[venue_key])
-    citation += f" {html_escape(venue)}, {pub_year}."
-    
-    return citation
+    venue_key = PUBLICATION_TYPES[pubsource]["venue_key"]
+    venue_prefix = PUBLICATION_TYPES[pubsource]["venue_prefix"]
+    venue = venue_prefix + clean_bibtex_text(fields[venue_key])
+
+    return f'{citation}"{html_escape(title)}." {html_escape(venue)}, {pub_year}.'
 
 
-def generate_bib_markdown(bib_id: str, bibdata, pubsource: str) -> tuple:
-    """生成单篇 BibTeX 论文的 Markdown 内容，返回 (filename, content)"""
+def generate_bib_markdown(bib_id: str, bibdata, pubsource: str) -> tuple[str, str]:
+    """Generate a markdown file name and body for one BibTeX entry."""
     entry = bibdata.entries[bib_id]
     fields = entry.fields
-    
-    # 解析日期
+
     pub_date = parse_date(fields)
-    pub_year = fields.get("year", "1900")
-    
-    # 生成文件名
+    pub_year = int(fields.get("year", "1900"))
     url_slug = generate_url_slug(fields["title"])
-    md_filename = f"{pub_date}-{url_slug}.md".replace("--", "-")
-    html_filename = f"{pub_date}-{url_slug}".replace("--", "-")
-    
-    # 构建引用
-    citation = build_citation(bib_id, bibdata, pubsource, pub_year)
-    
-    # 清理标题
-    clean_title = html_escape(clean_bibtex_text(fields["title"]))
-    
-    # YAML Front Matter
+    md_filename = f"{pub_date}-{url_slug}.md"
+
+    citation = build_citation(bib_id, bibdata, pubsource, str(pub_year))
+    note = optional_text(fields.get("note"))
+    url = optional_text(fields.get("url"))
+    venue_key = PUBLICATION_TYPES[pubsource]["venue_key"]
+    venue_prefix = PUBLICATION_TYPES[pubsource]["venue_prefix"]
+    venue = venue_prefix + clean_bibtex_text(fields[venue_key])
+
     yaml_data = {
-        'title': clean_title,
-        'collection': PUBLICATION_TYPES[pubsource]["collection"]["name"],
-        'permalink': PUBLICATION_TYPES[pubsource]["collection"]["permalink"] + html_filename,
-        'date': pub_date,
+        "title": clean_bibtex_text(fields["title"]),
+        "collection": "papers",
+        "permalink": f"/papers/{url_slug}/",
+        "date": pub_date,
+        "year": pub_year,
+        "venue": venue,
+        "paperurl": url,
+        "citation": citation,
+        "excerpt": note,
     }
-    
-    # 可选字段
-    note = ""
-    if "note" in fields:
-        note = str(fields["note"])
-        if len(note) > 5:
-            yaml_data['excerpt'] = note
-    
-    venue = PUBLICATION_TYPES[pubsource]["venue-pretext"] + clean_bibtex_text(fields[PUBLICATION_TYPES[pubsource]["venuekey"]])
-    yaml_data['venue'] = venue
-    
-    url = ""
-    if "url" in fields:
-        url = str(fields["url"])
-        if len(url) > 5:
-            yaml_data['paperurl'] = url
-    
-    yaml_data['citation'] = citation
-    
-    # 构建 YAML
-    md_lines = ["---"]
-    for key, value in yaml_data.items():
-        if isinstance(value, str):
-            md_lines.append(f'{key}: "{html_escape(value)}"')
-        else:
-            md_lines.append(f'{key}: {value}')
-    md_lines.append("---")
-    
-    md = "\n".join(md_lines)
-    
-    # Markdown 内容
-    if note and len(note) > 5:
-        md += f"\n{html_escape(note)}\n"
-    
-    if url and len(url) > 5:
-        md += f'\n[Access paper here]({url}){{:target="_blank"}}\n'
+
+    content = [build_yaml_front_matter(yaml_data)]
+
+    if note:
+        content.append(html_escape(note))
+
+    if url:
+        content.append(f'[Access paper here]({url}){{:target="_blank"}}')
     else:
         search_title = clean_bibtex_text(fields["title"]).replace("-", "+")
-        md += f'\nUse [Google Scholar](https://scholar.google.com/scholar?q={html.escape(search_title)}){{:target="_blank"}} for full citation'
-    
-    return md_filename, md
+        content.append(
+            f'Use [Google Scholar](https://scholar.google.com/scholar?q={html.escape(search_title)}){{:target="_blank"}} for full citation'
+        )
+
+    return md_filename, "\n\n".join(content) + "\n"
 
 
-def main():
-    output_dir = ensure_dir(Path("../_publications"))
+def main() -> None:
+    """Generate markdown files from all configured BibTeX sources."""
+    output_dir = ensure_dir(OUTPUT_DIR)
     success_count = 0
     warning_count = 0
-    
-    for pubsource in PUBLICATION_TYPES:
+
+    for pubsource, config in PUBLICATION_TYPES.items():
         parser = bibtex.Parser()
-        bibdata = parser.parse_file(PUBLICATION_TYPES[pubsource]["file"])
-        
+        bibdata = parser.parse_file(config["file"])
+
         for bib_id in bibdata.entries:
             try:
                 md_filename, md_content = generate_bib_markdown(bib_id, bibdata, pubsource)
                 write_markdown(output_dir, md_filename, md_content)
-                
+
                 title = bibdata.entries[bib_id].fields["title"]
                 display_title = title[:60] + "..." if len(title) > 60 else title
                 print(f'SUCCESSFULLY PARSED {bib_id}: "{display_title}"')
                 success_count += 1
-                
-            except KeyError as e:
+            except KeyError as exc:
                 title = bibdata.entries[bib_id].fields.get("title", "Unknown")
                 display_title = title[:30] + "..." if len(title) > 30 else title
-                print(f'WARNING Missing Expected Field {e} from entry {bib_id}: "{display_title}"')
+                print(f'WARNING Missing Expected Field {exc} from entry {bib_id}: "{display_title}"')
                 warning_count += 1
-                continue
-    
+
     print(f"\nSummary: {success_count} successful, {warning_count} warnings")
 
 
